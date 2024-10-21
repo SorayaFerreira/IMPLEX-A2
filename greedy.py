@@ -3,7 +3,7 @@
 
 def greedy_cut_rod(sizes: list, prices: list) -> int:
     """
-    Essa estratégia gulosa prioriza as toras com maior densidade.
+    Essa estratégia gulosa que prioriza as toras com maior densidade.
     """    
     # Densidade é a razão entre o preço do tamanho i e o tamanho i.
 
