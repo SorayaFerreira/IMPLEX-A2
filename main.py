@@ -110,12 +110,22 @@ def main():
     inc = int(input("\tParâmetro inc (tamanho inicial do vetor): "))
     fim = int(input("\tParâmetro fim (tamanho final do vetor): "))
     stp = int(input("\tParâmetro stp (intervalos entre os tamanhos): "))
+
+    #criar vetor com os tamanhos
+    #tamanhos
+
+    #criar vetores para armazenar os dados de vendas
+    #venda_dp, venda_greedy
+
+    #criar vetores para armazenar os tempos de execuçao dos algoritmos
+    #tempo_dp, tempo_greedy
+
            
     testar_dp()
     testar_greedy()
 
-    gerar_grafico_tempo()
-    gerar_grafico_vendas()
+    gerar_grafico_tempo(tamanhos, tempo_dp, tempo_greedy)
+    gerar_grafico_vendas(tamanhos, venda_dp, venda_greedy)
 
 if __name__ == '__main__':
     main()
