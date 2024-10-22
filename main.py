@@ -19,28 +19,23 @@ def gerar_numeros_aleatorios(n: int) -> list:
     'n'.
     """
  
-    # 'n' limitação para manter o tempo do counting sort linear
-    numeros = [random.randint(0, n) for _ in range(n)]
-    return numeros
+    numeros = [random.randint(0, 2*n) for _ in range(n)]
+    return numeros.sort()
 
 
-'''
-def gerar_grafico(tamanhos, tempos_bubble, tempos_insertion, tempos_merge, tempos_quick, tempos_heap, tempos_counting, escolha: int, stp: int):
+
+def gerar_grafico_tempo(tamanhos, tempos_dp, tempos_greedy, stp: int):
     """
     Essa função tem o objetivo de gerar o gráfico para melhor visualização dos tempos
     de execução dos algoritmos. Ela recebe um vetor com todos os tamanhos de vetor testados,
     listas com os tempos de execução de cada algoritmo, conforme o tamanho, um inteiro para
     exibir o título do gráfico de acordo com a escolha de teste, e outro com o intervalo entre
-    as medições do gráfico.
+    as medições do gráfico, para melhor visualização dos valores.
     """
     fig, ax = plt.subplots()
 
-    ax.plot(tamanhos, tempos_bubble, label='Bubble', marker='o')
-    ax.plot(tamanhos, tempos_insertion, label='Insertion', marker='o')
-    ax.plot(tamanhos, tempos_merge, label='Merge', marker='o')
-    ax.plot(tamanhos, tempos_quick, label='Quick', marker='o')
-    ax.plot(tamanhos, tempos_heap, label='Heap', marker='o')
-    ax.plot(tamanhos, tempos_counting, label='Counting', marker='o')
+    ax.plot(tamanhos, tempos_dp, label='Dynamic Programming', marker='o')
+    ax.plot(tamanhos, tempos_greedy, label='Greedy', marker='o')
 
     xticks_interval = stp
     plt.xticks(fontsize=6)
@@ -50,25 +45,60 @@ def gerar_grafico(tamanhos, tempos_bubble, tempos_insertion, tempos_merge, tempo
     ax.set_xlabel('eixo x')
     ax.set_ylabel('eixo y')
 
-    if escolha == 1 :
-        ax.set_title('title1')
-    elif escolha == 2:
-        ax.set_title('title2')
-    elif escolha == 3:
-        ax.set_title('title3')
-    else:
-        # Se a escolha for 4
-        ax.set_title('title4')
+    ax.set_title('Tempo de execução dos algoritmos')
+
     ax.legend()
     ax.grid(True)
 
     plt.show()
 
---------------------------------------
-#linhas que imprimem tabela: 
-print(f"{'Tamanho':<10}{'Dinamic':<10}{'Greedy':<10}")
-print(f"{n:<10}{tempos_dinamic[indice_tempos]:<10.6f}{tempos_greedy[indice_tempos]:<10.6f}")
-'''
+def gerar_grafico_vendas(tamanhos, venda_dp, venda_greedy, stp: int):
+    """
+    Essa função tem o objetivo de gerar o gráfico para melhor visualização dos tempos
+    de execução dos algoritmos. Ela recebe um vetor com todos os tamanhos de vetor testados,
+    listas com os tempos de execução de cada algoritmo, conforme o tamanho, um inteiro para
+    exibir o título do gráfico de acordo com a escolha de teste, e outro com o intervalo entre
+    as medições do gráfico, para melhor visualização dos valores.
+    """
+    fig, ax = plt.subplots()
+
+    ax.plot(tamanhos, venda_dp, label='Dynamic Programming', marker='o')
+    ax.plot(tamanhos, venda_greedy, label='Greedy', marker='o')
+
+    xticks_interval = stp
+    plt.xticks(fontsize=6)
+    xticks = np.arange(min(tamanhos), max(tamanhos) + xticks_interval, xticks_interval)
+    ax.set_xticks(xticks)
+
+    ax.set_xlabel('eixo x')
+    ax.set_ylabel('eixo y')
+
+    ax.set_title('Valor total de venda')
+
+    ax.legend()
+    ax.grid(True)
+
+    plt.show()
+
+
+# ------ PROGRAMAÇÃO DINÂMICA ------- #
+
+def testar_dp():
+
+    ##codigo etc etc
+
+    print()
+    print(f"{'n':<8}{'vDP':<9}{'tDP':<10}{'vGreedy':<10}{'tGreedy':<10}{'%':<10}")
+
+
+# ----------- GULOSO ------------- #
+
+def testar_greedy():
+
+    ##codigo etc etc
+
+    print()
+    print(f"{'n':<8}{'vDP':<9}{'tDP':<10}{'vGreedy':<10}{'tGreedy':<10}{'%':<10}")
 
 #----------- MAIN -----------#
 def main():
@@ -76,45 +106,16 @@ def main():
     # Foi necessário aumentar o limite de chamadas recursivas do python
     sys.setrecursionlimit(100000)
 
-    print("\n\
-          \t[1] Testar;\n\
-           \t[2] Testar ;\n\
-           \t[3] Testar ;\n\
-           \t[4] Testar ;\n\
-           Escolha: ", end='')   
-    escolha = int(input())
 
     inc = int(input("\tParâmetro inc (tamanho inicial do vetor): "))
     fim = int(input("\tParâmetro fim (tamanho final do vetor): "))
     stp = int(input("\tParâmetro stp (intervalos entre os tamanhos): "))
-
-    if escolha == 1:
-        start = time.time()
-
-        end = time.time()
-        print(f"\nTempo total: {(end-start)//60}")
-
-    elif escolha == 2:
-        start = time.time()
-        
-        end = time.time()
-        print(f"\nTempo total: {(end-start)//60}")
-
-    elif escolha == 3:
-        start = time.time()
-        
-        end = time.time()
-        print(f"\nTempo total: {(end-start)//60}")
-
-    elif escolha == 4:
-        start = time.time()
-        
-        end = time.time()
-        print(f"\nTempo total: {(end-start)//60}")
-
-    else:
-        print("Escolha inválida!")
            
+    testar_dp()
+    testar_greedy()
+
+    gerar_grafico_tempo()
+    gerar_grafico_vendas()
 
 if __name__ == '__main__':
     main()

@@ -19,8 +19,6 @@ def gerar_precos(n: int) -> list:
     que os valores dentro do vetor não podem ultrapassar o valor de 
     '2n'.
     """
- 
-    # 'n' limitação para manter o tempo do counting sort linear
     numeros = [random.randint(0, 2*n) for _ in range(n)]
     return numeros
 
