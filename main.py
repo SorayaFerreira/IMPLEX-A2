@@ -11,12 +11,12 @@ import numpy as np
 import random
 
 
-def gerar_numeros_aleatorios(n: int) -> list:
+def gerar_precos(n: int) -> list:
     """
     Esta função recebe 'n' como o tamanho do vetor a ser 
     gerado e retorna uma lista com n números aleatórios, sendo
     que os valores dentro do vetor não podem ultrapassar o número 
-    'n'.
+    '2*n'.
     """
  
     numeros = [random.randint(0, 2*n) for _ in range(n)]
@@ -79,11 +79,28 @@ def gerar_grafico_vendas(tamanhos, venda_dp, venda_greedy, stp: int):
     ax.grid(True)
 
     plt.show()
+# ------ TESTE GERAL ---------------#
 
+def testar_algoritmos(inc: int, fim: int, stp: int):
+    """
+    Esta função chama os algoritmos de solução do problema 
+    do Corte da Tora e executa todos os testes, conforme
+    o tamanho total da tora de madeira. Recebe o tamanho inicial
+    (inc), final (fim) e intervalos entre eles (stp). Ela armazena,
+    em vetores, os tempos de execução de cada, os valores de venda,
+    e realiza a contagem do número de acertos do algoritmo guloso.
+    """
+
+
+    print()
+    print(f"{'n':<8}{'vDP':<9}{'tDP':<10}{'vGreedy':<10}{'tGreedy':<10}{'%':<10}")
+
+    
+'''
 
 # ------ PROGRAMAÇÃO DINÂMICA ------- #
 
-def testar_dp():
+def executar_dp():
 
     ##codigo etc etc
 
@@ -99,6 +116,7 @@ def testar_greedy():
 
     print()
     print(f"{'n':<8}{'vDP':<9}{'tDP':<10}{'vGreedy':<10}{'tGreedy':<10}{'%':<10}")
+'''
 
 #----------- MAIN -----------#
 def main():
