@@ -82,6 +82,8 @@ def gerar_grafico_vendas(tamanhos, venda_dp, venda_greedy, stp: int):
     ax.grid(True)
 
     plt.show()
+
+    
 # ------ TESTE GERAL ---------------#
 
 def testar_algoritmos(inc: int, fim: int, stp: int):
@@ -158,9 +160,6 @@ def main():
     fim = int(input("\tParâmetro fim (tamanho final): "))
     stp = int(input("\tParâmetro stp (intervalo entre os tamanhos): "))
 
-    #criar vetor com os tamanhos
-    #tamanhos
-    # ^ precisa não fia, o alg faz sozinho, ele é smart clever
 
     #criar vetores para armazenar os dados de vendas
     #venda_dp, venda_greedy
