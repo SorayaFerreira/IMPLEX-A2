@@ -3,14 +3,6 @@
 
 import random
 
-
-"""
-PENDÊNCIAS:
-    Ordenar de modo não decrescente a lista de preços;
-    A main() faz um pequeno teste, não testando com a lista de aleatórios;
-    A lista de preços deve ser igual para todos os casos de teste? Ou gero listas diferentes a cada teste?
-"""
-
 def bottom_up_cut_rod(prices: list, total_size: int) -> int:
 
     best_solu = 0
@@ -22,6 +14,8 @@ def bottom_up_cut_rod(prices: list, total_size: int) -> int:
             best_solu = max(best_solu, prices[j] + storage[i - j - 1])
         storage[i] = best_solu
 
+    if total_size == 1:
+        return prices[0]
     return storage[total_size]
 
 def gerar_precos(n: int) -> list:

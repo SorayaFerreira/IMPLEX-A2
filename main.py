@@ -5,75 +5,67 @@
 import random
 import sys
 import time
+
 # Bibliotecas para visualização do gráfico
-# import matplotlib.pyplot as plt
-# import numpy as np
+import matplotlib.pyplot as plt
+import numpy as np
+
 # Módulos dos algoritmos implementados
 from dinamic import bottom_up_cut_rod
 from greedy import greedy_cut_rod
 
 
-# -------- GRAFICOS --------- #
+# --------------- GRAFICOS ---------------- #
 
 
-# def gerar_grafico_tempo(tamanhos, tempos_dp, tempos_greedy, stp: int):
-#     """
-#     Essa função tem o objetivo de gerar o gráfico para melhor visualização dos tempos
-#     de execução dos algoritmos. Ela recebe um vetor com todos os tamanhos de vetor testados,
-#     listas com os tempos de execução de cada algoritmo, conforme o tamanho, um inteiro para
-#     exibir o título do gráfico de acordo com a escolha de teste, e outro com o intervalo entre
-#     as medições do gráfico, para melhor visualização dos valores.
-#     """
-#     fig, ax = plt.subplots()
+def gerar_grafico_tempos(tamanhos, tempos_dp, tempos_greedy, stp):
+    """
+    Gera gráfico para visualização dos tempos de execução dos algoritmos.
+    """
+    fig, ax = plt.subplots()
 
-#     ax.plot(tamanhos, tempos_dp, label='Dynamic Programming', marker='o')
-#     ax.plot(tamanhos, tempos_greedy, label='Greedy', marker='o')
+    ax.plot(tamanhos, tempos_dp, label='Dynamic Programming', marker='o')
+    ax.plot(tamanhos, tempos_greedy, label='Greedy', marker='o')
 
-#     xticks_interval = stp
-#     plt.xticks(fontsize=6)
-#     xticks = np.arange(min(tamanhos), max(tamanhos) + xticks_interval, xticks_interval)
-#     ax.set_xticks(xticks)
+    xticks_interval = stp
+    plt.xticks(fontsize=6)
+    xticks = np.arange(min(tamanhos), max(tamanhos) + xticks_interval, xticks_interval)
+    ax.set_xticks(xticks)
 
-#     ax.set_xlabel('eixo x')
-#     ax.set_ylabel('eixo y')
+    ax.set_xlabel('Tamanho (n)')
+    ax.set_ylabel('Tempo de execução')
+    ax.set_title('Dynamic Programming vs. Greedy')
 
-#     ax.set_title('Tempo de execução dos algoritmos')
+    ax.legend()
+    ax.grid(True)
 
-#     ax.legend()
-#     ax.grid(True)
+    plt.show()
 
-#     plt.show()
 
-# def gerar_grafico_vendas(tamanhos, venda_dp, venda_greedy, stp: int):
-#     """
-#     Essa função tem o objetivo de gerar o gráfico para melhor visualização dos tempos
-#     de execução dos algoritmos. Ela recebe um vetor com todos os tamanhos de vetor testados,
-#     listas com os tempos de execução de cada algoritmo, conforme o tamanho, um inteiro para
-#     exibir o título do gráfico de acordo com a escolha de teste, e outro com o intervalo entre
-#     as medições do gráfico, para melhor visualização dos valores.
-#     """
-#     fig, ax = plt.subplots()
+def gerar_grafico_vendas(tamanhos, venda_dp, venda_greedy, stp):
+    """
+    Gera gráfico para visualização dos valores de venda totais dos algoritmos.
+    """
+    fig, ax = plt.subplots()
 
-#     ax.plot(tamanhos, venda_dp, label='Dynamic Programming', marker='o')
-#     ax.plot(tamanhos, venda_greedy, label='Greedy', marker='o')
+    ax.plot(tamanhos, venda_dp, label='Dynamic Programming', marker='o')
+    ax.plot(tamanhos, venda_greedy, label='Greedy', marker='o')
 
-#     xticks_interval = stp
-#     plt.xticks(fontsize=6)
-#     xticks = np.arange(min(tamanhos), max(tamanhos) + xticks_interval, xticks_interval)
-#     ax.set_xticks(xticks)
+    xticks_interval = stp
+    plt.xticks(fontsize=6)
+    xticks = np.arange(min(tamanhos), max(tamanhos) + xticks_interval, xticks_interval)
+    ax.set_xticks(xticks)
 
-#     ax.set_xlabel('eixo x')
-#     ax.set_ylabel('eixo y')
+    ax.set_xlabel('Tamanho (n)')
+    ax.set_ylabel('Valor total de venda')
+    ax.set_title('Dynamic Programming vs. Greedy')
 
-#     ax.set_title('Valor total de venda')
+    ax.legend()
+    ax.grid(True)
 
-#     ax.legend()
-#     ax.grid(True)
-
-#     plt.show()
-
-    
-# ------ TESTE GERAL ---------------#
+    plt.show()
+   
+# ------------- TESTE GERAL ---------------#
 
 def gerar_precos(n: int) -> list:
     """
@@ -102,6 +94,9 @@ def testar_algoritmos(inc: int, fim: int, stp: int):
     print(f"{'Tamanho (n)':<15}{'vDP':<15}{'tDP':<15}{'vGreedy':<15}{'tGreedy':<15}{'%':<15}")
     print("-" * 90) 
 
+
+    tamanhos = []
+
     vetor_precos = gerar_precos(fim)
     tempos_dinamic = []
     totais_venda_dinamic = []
@@ -129,15 +124,17 @@ def testar_algoritmos(inc: int, fim: int, stp: int):
         tempos_greedy.append(end - start)
         totais_venda_greedy.append(vgreedy)
 
-
-        #diferenca = (vdp * 100 / 100 * vdp-vgreedy)
-
         diferenca = (vgreedy * 100) / vdp
 
         print(f"{n:<15}{totais_venda_dinamic[ind_testes]:<15}{tempos_dinamic[ind_testes]:<15.6f}{totais_venda_greedy[ind_testes]:<15}{tempos_greedy[ind_testes]:<15.6f}{diferenca:<12.2f}")
 
         ind_testes = ind_testes + 1
+
+        tamanhos.append(n)
     print()
+
+    gerar_grafico_vendas(tamanhos, totais_venda_dinamic, totais_venda_greedy, stp)
+    gerar_grafico_tempos(tamanhos, tempos_dinamic, tempos_greedy, stp)
 
     
 #----------- MAIN -----------#
