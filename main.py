@@ -8,7 +8,10 @@ import time
 # Bibliotecas para visualização do gráfico
 import matplotlib.pyplot as plt
 import numpy as np
-import random
+# Módulos dos algoritmos implementados
+from dinamic import bottom_up_cut_rod
+from greedy import greedy_cut_rod
+
 
 
 def gerar_precos(n: int) -> list:
@@ -95,6 +98,32 @@ def testar_algoritmos(inc: int, fim: int, stp: int):
     print()
     print(f"{'n':<8}{'vDP':<9}{'tDP':<10}{'vGreedy':<10}{'tGreedy':<10}{'%':<10}")
 
+    vetor_precos = gerar_precos(fim)
+    tempos_dinamic = []
+    totais_venda_dinamic = []
+
+    tempos_greedy = []
+    totais_venda_greedy = []
+
+    ind_testes = 0 
+    # esse índice acompanha os testes p acessar posições respectivas dos vetores.
+
+    for n in range(inc, fim+1, stp):
+
+        start = time.time()
+        vdp = bottom_up_cut_rod(vetor_precos, n)
+        end = time.time()
+        tempos_dinamic.append(end - start)
+        totais_venda_dinamic.append(vdp)
+
+        start = time.time()
+        vgreedy = greedy_cut_rod(vetor_precos, n)
+        end = time.time()
+        tempos_greedy.append(end - start)
+        totais_venda_greedy.append(vgreedy)
+
+    #print(f"{n:<10}{totais_venda_dinamic[]:<10.6f}{tempos_dinamic[]:<10.6f}{totais_venda_greedy[]:<10.6}{tempos_greedy[]}}{}")
+
     
 '''
 
@@ -125,12 +154,13 @@ def main():
     sys.setrecursionlimit(100000)
 
 
-    inc = int(input("\tParâmetro inc (tamanho inicial do vetor): "))
-    fim = int(input("\tParâmetro fim (tamanho final do vetor): "))
-    stp = int(input("\tParâmetro stp (intervalos entre os tamanhos): "))
+    inc = int(input("\tParâmetro inc (tamanho inicial da tora de madeira): "))
+    fim = int(input("\tParâmetro fim (tamanho final): "))
+    stp = int(input("\tParâmetro stp (intervalo entre os tamanhos): "))
 
     #criar vetor com os tamanhos
     #tamanhos
+    # ^ precisa não fia, o alg faz sozinho, ele é smart clever
 
     #criar vetores para armazenar os dados de vendas
     #venda_dp, venda_greedy

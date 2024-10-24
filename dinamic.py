@@ -10,20 +10,6 @@ PENDÊNCIAS:
     A lista de preços deve ser igual para todos os casos de teste? Ou gero listas diferentes a cada teste?
 """
 
-import random
-
-def gerar_precos(n: int) -> list:
-    """
-    Esta função recebe 'n' como o tamanho do vetor a ser 
-    gerado e retorna uma lista com n números aleatórios, sendo
-    que os valores dentro do vetor não podem ultrapassar o valor de 
-    '2n'.
-    """
-    numeros = [random.randint(0, 2*n) for _ in range(n)]
-    return numeros
-
-
-
 def bottom_up_cut_rod(prices: list, total_size: int) -> int:
 
     storage = [0 for _ in range(0, total_size+1)]
