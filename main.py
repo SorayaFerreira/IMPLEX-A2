@@ -75,7 +75,7 @@ def gerar_precos(n: int) -> list:
     '2*n'.
     """
  
-    numeros = [random.randint(0, 2*n) for _ in range(n)]
+    numeros = [random.randint(1, 2*n) for _ in range(n)]
     return sorted(numeros)
 
 
@@ -97,7 +97,7 @@ def testar_algoritmos(inc: int, fim: int, stp: int):
 
     tamanhos = []
 
-    vetor_precos = gerar_precos(fim)
+
     tempos_dinamic = []
     totais_venda_dinamic = []
 
@@ -109,6 +109,8 @@ def testar_algoritmos(inc: int, fim: int, stp: int):
 
 
     for n in range(inc, fim+1, stp):
+
+        vetor_precos = gerar_precos(n)
 
         tamanhos_greedy  = [_ for _  in range(1, n + 1)]
 

@@ -13,9 +13,7 @@ def bottom_up_cut_rod(prices: list, total_size: int) -> int:
         for j in range(0, i):
             best_solu = max(best_solu, prices[j] + storage[i - j - 1])
         storage[i] = best_solu
-
-    if total_size == 1:
-        return prices[0]
+    
     return storage[total_size]
 
 def gerar_precos(n: int) -> list:
