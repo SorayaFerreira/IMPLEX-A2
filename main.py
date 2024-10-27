@@ -75,7 +75,7 @@ def gerar_precos(n: int) -> list:
     '2*n'.
     """
  
-    numeros = [random.randint(1, 2*n) for _ in range(n)]
+    numeros = [random.randint(1, 5*n) for _ in range(n)]
     return sorted(numeros)
 
 
