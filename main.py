@@ -71,11 +71,11 @@ def gerar_precos(n: int) -> list:
     """
     Esta função recebe 'n' como o tamanho do vetor a ser 
     gerado e retorna uma lista com n números aleatórios, sendo
-    que os valores dentro do vetor não podem ultrapassar o número 
-    '2*n'.
+    que os valores dentro do vetor não podem ultrapassar o parâmetro escolhido,
+    como '2*n', '3*n' ou '5*n'.
     """
  
-    numeros = [random.randint(1, 5*n) for _ in range(n)]
+    numeros = [random.randint(1, 3*n) for _ in range(n)]
     return sorted(numeros)
 
 
@@ -95,9 +95,10 @@ def testar_algoritmos(inc: int, fim: int, stp: int):
     print("-" * 90) 
 
 
+    #vetor pra armazenar os tamanhos utilizados
     tamanhos = []
 
-
+    #armazenar 
     tempos_dinamic = []
     totais_venda_dinamic = []
 
@@ -126,7 +127,9 @@ def testar_algoritmos(inc: int, fim: int, stp: int):
         tempos_greedy.append(end - start)
         totais_venda_greedy.append(vgreedy)
 
-        diferenca = (vgreedy * 100) / vdp
+
+        #calcula a diferença de valor de venda do guloso em razão do dinamico
+        diferenca = (vgreedy * 100) / vdp 
 
         print(f"{n:<15}{totais_venda_dinamic[ind_testes]:<15}{tempos_dinamic[ind_testes]:<15.6f}{totais_venda_greedy[ind_testes]:<15}{tempos_greedy[ind_testes]:<15.6f}{diferenca:<12.2f}")
 
