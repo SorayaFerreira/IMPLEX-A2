@@ -3,7 +3,6 @@
 
 # Bibliotecas para funções auxiliares
 import random
-import sys
 import time
 
 # Bibliotecas para visualização do gráfico
@@ -144,10 +143,11 @@ def testar_algoritmos(inc: int, fim: int, stp: int):
     
 #----------- MAIN -----------#
 def main():
-
-    # Foi necessário aumentar o limite de chamadas recursivas do python
-    sys.setrecursionlimit(100000)
-
+    """
+    Executa o algoritmo de teste dos algoritmos em questão,
+    solicitando como entrada, ao usuário, os parâmetros 
+    necessários.
+    """
 
     inc = int(input("\n\tParâmetro inc (tamanho inicial): "))
     fim = int(input("\tParâmetro fim (tamanho final): "))
